@@ -1,0 +1,10 @@
+.footer{
+    display: flex;
+    padding: 1.5rem 0;
+    justify-content: center;
+}
+
+.kodigoImg{
+    height: 4rem;
+    width: auto;
+}
