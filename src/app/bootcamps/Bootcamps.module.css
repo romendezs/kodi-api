@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1{
+    font-size: 3rem;
+    margin: 2rem 0 4rem 0;
+    color: var(--primary-color);
+}

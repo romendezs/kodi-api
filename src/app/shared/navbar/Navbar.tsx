@@ -15,13 +15,13 @@ const Navbar = () => {
         />
         <ul>
             <li>
-                <Link href={'#'} className={styles.Bootcamps}>Bootcamps</Link>
+                <Link href={'/bootcamps'} className={styles.Bootcamps}>Bootcamps</Link>
             </li>
             <li>
-                <Link href={'#'} className={styles.SignIn}>Sign In</Link>
+                <Link href={'/'} className={styles.SignIn}>Sign In</Link>
             </li>
             <li>
-                <Link href={'#'} className={styles.SignUp}>Sign Up</Link>
+                <Link href={'/sign-up'} className={styles.SignUp}>Sign Up</Link>
             </li>
         </ul>
 

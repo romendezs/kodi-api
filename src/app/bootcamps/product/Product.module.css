@@ -1,0 +1,56 @@
+.product{
+    width: 60%;
+    height: fit-content;
+    display: grid;
+    grid-template-areas: 
+    "a b"
+    "a b"
+    "a c"
+    "a d";
+    grid-template-columns: 30% 70%;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 2rem 3rem 2rem 2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    align-items: center;
+    justify-items: center;
+    border-radius: 10px;
+
+}
+
+.product img{
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 10px;
+    grid-area: a;
+    justify-self: center;
+}
+
+.product h2{
+    grid-area: b;
+    color: var(--second-color);
+}
+
+.product p{
+    grid-area: c;
+    height: 9.5rem;
+    overflow: scroll;
+    overflow-x: hidden ;
+
+}
+
+.product button{
+    grid-area: d;
+    width: 45%;
+    padding: 0.5rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+}
+
+.product button:hover{
+    background-color: var(--second-color);
+    cursor: pointer;
+}
