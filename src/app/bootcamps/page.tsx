@@ -1,5 +1,4 @@
-// src/app/bootcamps/page.tsx
-"use client"; // Asegúrate de que esto esté presente
+"use client"; 
 
 import React, { useEffect, useState } from 'react';
 import Navbar from '../shared/navbar/Navbar';

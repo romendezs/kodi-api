@@ -1,5 +1,4 @@
-// src/app/sign-in/page.tsx
-"use client"; // Asegúrate de que sea un Componente Cliente
+"use client";
 
 import { Montserrat } from 'next/font/google';
 import Footer from '../shared/footer/Footer';
@@ -10,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { auth } from '../firebases'; 
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, User } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import Notification from '../shared/notificacion/Notification'; // Importa el componente de notificación
+import Notification from '../shared/notificacion/Notification'; 
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 

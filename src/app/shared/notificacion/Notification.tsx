@@ -1,4 +1,3 @@
-// src/shared/notificacion/Notification.tsx
 import React from 'react';
 import styles from './Notification.module.css'; // Asegúrate de que tienes estilos para la notificación
 

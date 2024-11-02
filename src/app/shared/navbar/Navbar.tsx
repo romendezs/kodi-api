@@ -1,4 +1,3 @@
-// src/shared/navbar/Navbar.tsx
 import Image from 'next/image';
 import styles from './Navbar.module.css';
 import Link from 'next/link';
@@ -6,7 +5,7 @@ import { auth } from '../../firebases';
 import { signOut, User } from 'firebase/auth';
 
 interface NavbarProps {
-    user: User | null; // Asegúrate de que esta propiedad esté definida
+    user: User | null; 
     setNotification: (message: string) => void; // Añadir prop para manejar la notificación
 }
 

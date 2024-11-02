@@ -1,15 +1,15 @@
-"use client"; // Asegúrate de que esto esté presente
+"use client";
 
 import { useState } from 'react';
 import { auth } from "../firebases"; 
-import { signInWithPopup, GoogleAuthProvider, User } from 'firebase/auth'; // Importa User
+import { signInWithPopup, GoogleAuthProvider, User } from 'firebase/auth';
 import { useRouter } from 'next/navigation'; 
 import Navbar from '../shared/navbar/Navbar';
 import Footer from '../shared/footer/Footer';
 import Link from 'next/link';
 import { Montserrat } from 'next/font/google';
 import styles from './Sign-up.module.css';
-import Notification from '../shared/notificacion/Notification'; // Importa el componente de notificación
+import Notification from '../shared/notificacion/Notification';
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 
 const SignUp = () => {
     const router = useRouter();
-    const [user, setUser ] = useState<User | null>(null); // Define el tipo correctamente
+    const [user, setUser ] = useState<User | null>(null);
     const [notification, setNotification] = useState<string | null>(null); // Estado para la notificación
 
     const handleGoogleSignIn = async () => {
@@ -59,7 +59,7 @@ const SignUp = () => {
             {notification && (
                 <Notification 
                     message={notification} 
-                    onClose={handleCloseNotification} // Pasar la función onClose
+                    onClose={handleCloseNotification}
                 />
             )}
         </>

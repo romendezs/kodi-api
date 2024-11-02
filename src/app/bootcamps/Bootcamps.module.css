@@ -11,10 +11,9 @@
     color: var(--primary-color);
 }
 
-/* src/app/bootcamps/Bootcamps.module.css */
 .logoutButton {
     padding: 10px 20px;
-    background-color: #ff4d4d; /* Color rojo */
+    background-color: #ff4d4d; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -23,5 +22,5 @@
 }
 
 .logoutButton:hover {
-    background-color: #ff1a1a; /* Color más oscuro al pasar el ratón */
+    background-color: #ff1a1a; 
 }
