@@ -1,71 +1,59 @@
-import React from 'react'
-import Navbar from '../shared/navbar/Navbar'
-import Footer from '../shared/footer/Footer'
-import Product from './product/Product'
-import styles from './Bootcamps.module.css'
+// src/app/bootcamps/page.tsx
+"use client"; // Asegúrate de que esto esté presente
+
+import React, { useEffect, useState } from 'react';
+import Navbar from '../shared/navbar/Navbar';
+import Footer from '../shared/footer/Footer';
+import Product from './product/Product';
+import styles from './Bootcamps.module.css';
+import { auth } from '../firebases'; 
+import { onAuthStateChanged, User } from 'firebase/auth'; 
+import { useRouter } from 'next/navigation'; 
+import Notification from '../shared/notificacion/Notification'; // Importa el componente de notificación
 
 const Bootcamps = () => {
-  return (
-    <>
-      <Navbar />
-      <section className={styles.container}>
-        <h1>Start your career with us, now!</h1>
-        <Product name='Full Stack Junior'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Suspendisse venenatis gravida rutrum. Nam fermentum lacinia arcu ac ultricies. 
-        Morbi sagittis velit in mi venenatis suscipit. In hendrerit lectus eget nisl porta sodales in eu nibh. 
-        Donec condimentum sollicitudin pharetra. Praesent sodales sodales nisl, rutrum consequat ante rutrum a. 
-        Suspendisse est sem, vehicula vel eleifend eget, fermentum ac turpis. Aliquam erat volutpat. 
-        Integer ultricies lorem lectus, a tincidunt massa vulputate mollis. 
-        Nulla facilisi. Donec turpis urna, iaculis posuere congue vel, volutpat non neque. Suspendisse potenti. 
-        Integer in odio ut libero tristique ullamcorper ac quis justo.' />
+    const [user, setUser  ] = useState<User | null>(null);
+    const [notification, setNotification] = useState<string | null>(null);
+    const router = useRouter();
 
-        <Product name='Full Stack Junior'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Suspendisse venenatis gravida rutrum. Nam fermentum lacinia arcu ac ultricies. 
-        Morbi sagittis velit in mi venenatis suscipit. In hendrerit lectus eget nisl porta sodales in eu nibh. 
-        Donec condimentum sollicitudin pharetra. Praesent sodales sodales nisl, rutrum consequat ante rutrum a. 
-        Suspendisse est sem, vehicula vel eleifend eget, fermentum ac turpis. Aliquam erat volutpat. 
-        Integer ultricies lorem lectus, a tincidunt massa vulputate mollis. 
-        Nulla facilisi. Donec turpis urna, iaculis posuere congue vel, volutpat non neque. Suspendisse potenti. 
-        Integer in odio ut libero tristique ullamcorper ac quis justo.' />
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser  (user); // Guardar el usuario autenticado
+            } else {
+                setNotification('Necesita iniciar sesión para ver el contenido.'); // Establecer notificación
+                router.push('/sign-in'); // Redirigir a la página de inicio de sesión
+            }
+        });
 
+        return () => unsubscribe(); // Limpia el suscriptor
+    }, [router]);
 
-        <Product name='Full Stack Junior'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Suspendisse venenatis gravida rutrum. Nam fermentum lacinia arcu ac ultricies. 
-        Morbi sagittis velit in mi venenatis suscipit. In hendrerit lectus eget nisl porta sodales in eu nibh. 
-        Donec condimentum sollicitudin pharetra. Praesent sodales sodales nisl, rutrum consequat ante rutrum a. 
-        Suspendisse est sem, vehicula vel eleifend eget, fermentum ac turpis. Aliquam erat volutpat. 
-        Integer ultricies lorem lectus, a tincidunt massa vulputate mollis. 
-        Nulla facilisi. Donec turpis urna, iaculis posuere congue vel, volutpat non neque. Suspendisse potenti. 
-        Integer in odio ut libero tristique ullamcorper ac quis justo.' />
+    // Función para cerrar la notificación
+    const handleCloseNotification = () => {
+        setNotification(null); // Cierra la notificación
+    };
 
-        <Product name='Full Stack Junior'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Suspendisse venenatis gravida rutrum. Nam fermentum lacinia arcu ac ultricies. 
-        Morbi sagittis velit in mi venenatis suscipit. In hendrerit lectus eget nisl porta sodales in eu nibh. 
-        Donec condimentum sollicitudin pharetra. Praesent sodales sodales nisl, rutrum consequat ante rutrum a. 
-        Suspendisse est sem, vehicula vel eleifend eget, fermentum ac turpis. Aliquam erat volutpat. 
-        Integer ultricies lorem lectus, a tincidunt massa vulputate mollis. 
-        Nulla facilisi. Donec turpis urna, iaculis posuere congue vel, volutpat non neque. Suspendisse potenti. 
-        Integer in odio ut libero tristique ullamcorper ac quis justo.' />
-        <Product name='Full Stack Junior'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Suspendisse venenatis gravida rutrum. Nam fermentum lacinia arcu ac ultricies. 
-        Morbi sagittis velit in mi venenatis suscipit. In hendrerit lectus eget nisl porta sodales in eu nibh. 
-        Donec condimentum sollicitudin pharetra. Praesent sodales sodales nisl, rutrum consequat ante rutrum a. 
-        Suspendisse est sem, vehicula vel eleifend eget, fermentum ac turpis. Aliquam erat volutpat. 
-        Integer ultricies lorem lectus, a tincidunt massa vulputate mollis. 
-        Nulla facilisi. Donec turpis urna, iaculis posuere congue vel, volutpat non neque. Suspendisse potenti. 
-        Integer in odio ut libero tristique ullamcorper ac quis justo.' />
+    return (
+        <>
+            <Navbar user={user} setNotification={setNotification} /> {/* Pasar la función de notificación */}
+            {notification && (
+                <Notification 
+                    message={notification} 
+                    onClose={handleCloseNotification} // Pasar la función onClose
+                />
+            )}
+            {user && (
+                <section className={styles.container}>
+                    <h1>Start your career with us, now!</h1>
+                    <h2>Bienvenido a Kodigo, {user.displayName || user.email}!</h2> {/* Mensaje de bienvenida */}
+                    <Product name='Full Stack Junior' description='...' />
+                    {/* Otros productos */}
+                </section>
+            )}
+            <Footer />
+        </>
+    );
+};
 
-      </section>
-
-
-      <Footer />
-    </>
-  )
-}
-
-export default Bootcamps
+export default Bootcamps;

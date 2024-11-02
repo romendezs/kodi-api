@@ -1,0 +1,20 @@
+/* src/shared/notificacion/Notification.module.css */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    z-index: 1000; /* Asegúrate de que esté en la parte superior */
+}
+
+.notification button {
+    margin-left: 15px;
+    background: transparent;
+    border: none;
+    color: #721c24;
+    cursor: pointer;
+}

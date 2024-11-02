@@ -1,5 +1,5 @@
 import styles from './page.module.css'
-import SignIn from './sign-in/Sign-In'
+import SignIn from './sign-in/page'
 
 export default function Home() {
   return (
