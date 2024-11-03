@@ -1,19 +1,19 @@
-import Image from 'next/image';
-import styles from './Navbar.module.css';
-import Link from 'next/link';
-import { auth } from '../../firebases'; 
-import { signOut, User } from 'firebase/auth';
+import Image from 'next/image'
+import styles from './Navbar.module.css'
+import Link from 'next/link'
+import { auth } from '../../firebase'
+import { signOut, User } from 'firebase/auth'
 
 interface NavbarProps {
-    user: User | null; 
-    setNotification: (message: string) => void; // Añadir prop para manejar la notificación
+    user: User | null
+    setNotification: (message: string) => void
 }
 
 const Navbar = ({ user, setNotification }: NavbarProps) => {
     const handleLogout = async () => {
-        await signOut(auth);
-        setNotification("Has cerrado sesión exitosamente."); // Establecer notificación de éxito
-    };
+        await signOut(auth)
+        setNotification('Has cerrado sesión exitosamente.')
+    }
 
     return (
         <nav className={styles.navbar}>

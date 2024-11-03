@@ -1,44 +1,44 @@
-"use client";
+'use client'
 
-import { useState } from 'react';
-import { auth } from "../firebases"; 
-import { signInWithPopup, GoogleAuthProvider, User } from 'firebase/auth';
-import { useRouter } from 'next/navigation'; 
-import Navbar from '../shared/navbar/Navbar';
-import Footer from '../shared/footer/Footer';
-import Link from 'next/link';
-import { Montserrat } from 'next/font/google';
-import styles from './Sign-up.module.css';
-import Notification from '../shared/notificacion/Notification';
+import { useState } from 'react'
+import { auth } from '../firebase'
+import { signInWithPopup, GoogleAuthProvider, User } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import Navbar from '../shared/navbar/Navbar'
+import Footer from '../shared/footer/Footer'
+import Link from 'next/link'
+import { Montserrat } from 'next/font/google'
+import styles from './Sign-up.module.css'
+import Notification from '../shared/notificacion/Notification'
 
 const montserrat = Montserrat({
     subsets: ['latin'],
-});
+})
 
 const SignUp = () => {
-    const router = useRouter();
-    const [user, setUser ] = useState<User | null>(null);
-    const [notification, setNotification] = useState<string | null>(null); // Estado para la notificación
+    const router = useRouter()
+    const [user, setUser ] = useState<User | null>(null)
+    const [notification, setNotification] = useState<string | null>(null) // Estado para la notificación
 
     const handleGoogleSignIn = async () => {
-        const provider = new GoogleAuthProvider();
+        const provider = new GoogleAuthProvider()
         try {
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-            console.log('Usuario logueado: ', user);
-            setUser (user); // Actualiza el estado del usuario
-            setNotification("Registro exitoso. Bienvenido!"); // Establece la notificación de éxito
-            setTimeout(() => setNotification(null), 3000); // Oculta la notificación después de 3 segundos
-            router.push('/bootcamps'); 
+            const result = await signInWithPopup(auth, provider)
+            const user = result.user
+            console.log('Usuario logueado: ', user)
+            setUser (user) // Actualiza el estado del usuario
+            setNotification('Registro exitoso. Bienvenido!') // Establece la notificación de éxito
+            setTimeout(() => setNotification(null), 3000) // Oculta la notificación después de 3 segundos
+            router.push('/bootcamps')
         } catch (error) {
-            console.error("Error al iniciar sesión con Google: ", error);
-            setNotification("Error al iniciar sesión con Google."); // Establece la notificación de error
+            console.error('Error al iniciar sesión con Google: ', error)
+            setNotification('Error al iniciar sesión con Google.') // Establece la notificación de error
         }
-    };
+    }
 
     const handleCloseNotification = () => {
-        setNotification(null); // Cierra la notificación
-    };
+        setNotification(null) // Cierra la notificación
+    }
 
     return (
         <>
@@ -63,7 +63,7 @@ const SignUp = () => {
                 />
             )}
         </>
-    );
+    )
 }
 
-export default SignUp;
+export default SignUp

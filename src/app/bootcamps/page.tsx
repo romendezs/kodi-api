@@ -5,7 +5,7 @@ import Navbar from '../shared/navbar/Navbar';
 import Footer from '../shared/footer/Footer';
 import Product from './product/Product';
 import styles from './Bootcamps.module.css';
-import { auth } from '../firebases'; 
+import { auth } from '../firebase'; 
 import { onAuthStateChanged, User } from 'firebase/auth'; 
 import { useRouter } from 'next/navigation'; 
 import Notification from '../shared/notificacion/Notification'; // Importa el componente de notificación
