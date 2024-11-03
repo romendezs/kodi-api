@@ -1,12 +1,12 @@
-.product{
+.product {
     width: 60%;
     height: fit-content;
     display: grid;
     grid-template-areas: 
-    "a b"
-    "a b"
-    "a c"
-    "a d";
+        "a b"
+        "a b"
+        "a c"
+        "a d";
     grid-template-columns: 30% 70%;
     gap: 2rem;
     margin: 2rem 0;
@@ -15,10 +15,9 @@
     align-items: center;
     justify-items: center;
     border-radius: 10px;
-
 }
 
-.product img{
+.product img {
     width: 15rem;
     height: 15rem;
     object-fit: cover;
@@ -27,20 +26,19 @@
     justify-self: center;
 }
 
-.product h2{
+.product h2 {
     grid-area: b;
     color: var(--second-color);
 }
 
-.product p{
+.product p {
     grid-area: c;
     height: 9.5rem;
     overflow: scroll;
-    overflow-x: hidden ;
-
+    overflow-x: hidden;
 }
 
-.product button{
+.product button {
     grid-area: d;
     width: 45%;
     padding: 0.5rem;
@@ -48,9 +46,62 @@
     color: #fff;
     border-radius: 5px;
     border: 1px solid var(--primary-color);
+    cursor: pointer;
 }
 
-.product button:hover{
+.product button:hover {
     background-color: var(--second-color);
-    cursor: pointer;
+}
+
+
+
+
+@media (max-width: 768px) {
+.product {
+    width: 80%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "a"
+        "b"
+        "c"
+        "d";
+    gap: 1rem;
+     padding: 1rem;
+}
+
+.product img {
+        width: 12rem;
+        height: 12rem;
+}
+
+.product button {
+        width: 100%;
+}
+}
+
+
+@media (max-width: 480px) {
+.product {
+        width: 100%; 
+        padding: 1rem;
+}
+
+.product img {
+        width: 100%; 
+        height: auto;
+}
+
+.product h2 {
+        font-size: 1.5rem;
+        text-align: center;
+}
+
+.product p {
+        font-size: 0.9rem;
+}
+
+.product button {
+        font-size: 0.9rem;
+        width:100%;
+}
 }

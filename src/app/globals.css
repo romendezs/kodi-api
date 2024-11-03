@@ -19,7 +19,7 @@
     color: inherit;
   }
   
-  /* Scrollbar styling */
+  
   ::-webkit-scrollbar {
     width: 0.7vw;
   }
@@ -37,7 +37,13 @@
     background-color: #1b1b1bb5;
   }
   
-  /* Responsive Container */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  
   .container {
     width: 100%;
     padding: 1rem;
@@ -45,7 +51,7 @@
     margin: auto;
   }
   
-  /* Responsive Text */
+  
   .text {
     font-size: 18px;
   }
