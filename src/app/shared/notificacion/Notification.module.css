@@ -2,18 +2,27 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: var(--second-color);
+    color: #fff;
     padding: 15px;
-    border: 1px solid #f5c6cb;
+    border: 1px solid var(--second-color);
     border-radius: 5px;
     z-index: 1000; 
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification p{
+    height: fit-content;
+    padding: 1rem;
+    overflow: hidden;
 }
 
 .notification button {
-    margin-left: 15px;
     background: transparent;
     border: none;
-    color: #721c24;
+    color: #ccc;
     cursor: pointer;
 }
