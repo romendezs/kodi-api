@@ -1,9 +1,7 @@
 'use client'
-import { useState } from 'react';
 import styles from './Product.module.css'
 import Image from 'next/image'
-import { User } from 'firebase/auth';
-import { auth } from '@/app/firebase';
+import { auth } from '@/app/firebase/firebase'
 
 interface Product {
   name: string;
@@ -11,6 +9,27 @@ interface Product {
 }
 
 const Product = (props: Product) => {
+
+  const sendEmail = async () => {
+    try {
+      const email = auth.currentUser ? auth.currentUser.email : null
+      const bootcamp = props.name
+      const description = props.description
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email , bootcamp : bootcamp, description: description}),
+      },
+    )
+      const data = await response.json()
+      console.log(data.message)
+    } catch (error) {
+      console.error('Error al enviar el correo:', error)
+    }
+  }
+
   return (
     <div className={styles.product}>
       <Image
@@ -22,9 +41,9 @@ const Product = (props: Product) => {
       />
       <h2 className={styles.productTitle}>{props.name}</h2>
       <p className={styles.productDescription}>{props.description}</p>
-      <button className={styles.productButton}>Suscribir</button>
+      <button className={styles.productButton} onClick={sendEmail}>Suscribir</button>
     </div>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product

@@ -1,10 +1,11 @@
 // /app/api/send-email/route.ts
 import { NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
 
 
 export async function POST(request: Request) {
 
-  const { email } = await request.json();
+  const { email, bootcamp, description } = await request.json()
 
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -19,9 +20,11 @@ export async function POST(request: Request) {
   const mailOptions = {
     from: process.env.NEXT_PUBLIC_EMAIL_USER,
     to: email,
-    subject: 'Asunto del correo',
+    subject: `Congrats for Subscribing to ${bootcamp} Bootcamp`,
     text: 'Este es el contenido del correo en texto plano.',
-    html: '<p>Este es el contenido del correo en <strong>HTML</strong>.</p>',
+    html: `<div> <h1>You have subscribed to ${bootcamp} Bootcamp <h1/> <br/>
+          <p>Description: ${description}</p>  
+          </div>`,
   }
 
   try {

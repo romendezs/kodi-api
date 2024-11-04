@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './Navbar.module.css'
 import Link from 'next/link'
-import { auth } from '../../firebase'
+import { auth } from '../../firebase/firebase'
 import { signOut, User } from 'firebase/auth'
 
 interface NavbarProps {
